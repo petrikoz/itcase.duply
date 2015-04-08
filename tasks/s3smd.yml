@@ -1,0 +1,13 @@
+---
+
+- name: Download s3cmd
+  git: repo=https://github.com/s3tools/s3cmd.git dest=/tmp/s3cmd
+
+- name: Install s3cmd
+  command: python setup.py install chdir=/tmp/s3cmd
+
+- name: Setup s3cmd config
+  template: src=s3cfg.jinja2 dest=/root/.s3cfg
+
+- name: Make S3 bucket
+  command: s3cmd md s3://{{ s3_bucket }}

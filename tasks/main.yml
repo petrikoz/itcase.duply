@@ -1,0 +1,13 @@
+---
+
+- include: s3cmd.yml
+  when: s3cmd_enable
+  tags: [itcase.duply, s3cmd]
+
+- include: duply.yml
+  when: duply_enable
+  tags: [itcase.duply, duply]
+
+- include: boto.yml
+  when: boto_enable
+  tags: [itcase.duply, boto]

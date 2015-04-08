@@ -1,0 +1,22 @@
+---
+
+- name: Install duply
+  apt: name={{ item }}
+  with_items:
+  - duply
+  - duplicity
+
+- name: Setup duply config
+  template: src=duply/conf.jinja2 dest=/root/.duply/{{ duply_name }}/conf
+
+- name: Setup duply excludes
+  template: src=duply/exclude.jinja2 dest=/root/.duply/{{ duply_name }}/exclude
+
+- name: Setup duply cron
+  cron: name='backup by duply'
+        minute='37' hour='5'
+        job='export LANG=C; /usr/bin/duply {{ duply_name }} backup_purge --force >> {{ duply_log }}'
+
+- name: Run duply in first time
+  command: export LANG=C; duply {{ duply_name }} backup
+  when: duply_run

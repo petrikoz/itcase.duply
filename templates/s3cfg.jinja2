@@ -1,0 +1,10 @@
+[default]
+access_key = {{ s3_access_key }}
+secret_key = {{ s3_secret_key }}
+host_base = {{ s3_host }}
+host_bucket = %(bucket)s.{{ s3_host }}
+use_https = True
+
+{% for extra in s3cmd_extras %}
+{{ extra }}
+{% endfor %}

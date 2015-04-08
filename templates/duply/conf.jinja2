@@ -1,0 +1,14 @@
+GPG_KEY='disabled'
+
+TARGET='s3://{{ s3_host }}/{{ s3_bucket }}/{{ duply_name }}/'
+TARGET_USER='{{ s3_access_key }}'
+TARGET_PASS='{{ s3_secret_key }}'
+SOURCE='/'
+
+FILENAME='.duplicity-ignore'
+DUPL_PARAMS="$DUPL_PARAMS --exclude-if-present '$FILENAME'"
+
+MAX_AGE=20D
+MAX_FULL_BACKUPS=3
+MAX_FULLBKP_AGE=7D
+DUPL_PARAMS="$DUPL_PARAMS --full-if-older-than $MAX_FULLBKP_AGE "

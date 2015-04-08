@@ -1,0 +1,10 @@
+{% for incl in duply_includes %}
++ {{ incl }}
+{% endfor %}
+
+{% for excl in duply_excludes %}
+- {{ excl }}
+{% endfor %}
+
+- **/*.py[cod]
+- **

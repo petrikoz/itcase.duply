@@ -1,0 +1,9 @@
+---
+
+- name: Check boto config exists
+  stat: path=/root/.boto
+  register: boto_conf
+
+- name: Setup boto config
+  template: src=boto.jinja2 dest=/root/.boto
+  when: not boto_conf.stat.exists

@@ -1,0 +1,13 @@
+---
+
+s3cmd_enable: true
+
+duply_enable: true
+duply_run: true
+
+boto_enable: true
+
+s3cmd_extras: [
+  'multipart_chunk_size_mb = 5',
+  'signature_v2 = True'
+]
